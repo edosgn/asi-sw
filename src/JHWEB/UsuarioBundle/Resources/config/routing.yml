@@ -1,0 +1,27 @@
+#
+usuario_registro:
+    pattern: /registro
+    defaults: { _controller: JHWEBUsuarioBundle:Usuario:registro }
+usuario_login:
+    pattern: /login
+    defaults: { _controller: JHWEBUsuarioBundle:Usuario:login }
+usuario_login_check:
+    pattern: /login_check
+usuario_logout:
+    pattern: /logout
+#Opreraciones
+usuario:
+    resource: "@JHWEBUsuarioBundle/Controller/"
+    type:     annotation
+#Escritorio
+escritorio:
+    pattern:  /escritorio
+    defaults: { _controller: JHWEBUsuarioBundle:Usuario:escritorio }
+#Inicio
+inicio:
+    pattern:  /inicio
+    defaults: { _controller: JHWEBUsuarioBundle:Usuario:inicio }
+#Lista de Municipios
+lista_municipios:
+    pattern:  /registro/lista/municipios/{idDepartamento}/{tipo}
+    defaults: { _controller: JHWEBUsuarioBundle:Usuario:listaMunicipios }

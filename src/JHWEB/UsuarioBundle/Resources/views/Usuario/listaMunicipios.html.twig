@@ -1,0 +1,9 @@
+<label class="select">
+	<select required name="municipio{{tipo}}">
+		<option value="">Municipio</option>
+		{% for municipio in municipios %}
+			<option value="{{municipio.id}}">{{municipio.nombre}}</option>
+		{% endfor %}
+	</select>
+	<i></i>
+</label>

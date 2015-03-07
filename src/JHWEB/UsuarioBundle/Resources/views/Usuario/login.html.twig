@@ -1,0 +1,100 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div id="extr-page">
+
+        <div id="main" role="main">
+            <!-- MAIN CONTENT -->
+            <div id="content" class="container">
+                {% for mensaje in app.session.flashbag.get('info') %}
+                    <div class="alert alert-success fade in">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-check"></i>
+                        <strong>{{mensaje}}</strong>
+                    </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+                        <h1 class="txt-color-red login-header-big">Bienvenido a nuestra partido.</h1>
+                        <div class="hero">
+                            <div class="pull-left login-desc-box-l">
+                                <h4 class="paragraph-header">Ahora que haces parte de nuestro partido puedes realizar tu solicitud de afiliación a traves de nuestra plataforma, donde podras actualizar tus datos en cualquier momento, recibir información importante, conocer tu estado dentro del partido y mucho más!!</h4>
+                                <div class="login-app-icons">
+                                    <a href="{{path('usuario_registro')}}" class="btn btn-success btn-lg">Registrate!!</a>
+                                </div>
+                            </div>
+                            <img src="{{asset(img ~ 'logo-asi.png')}}" class="pull-right display-image" alt="" style="width:210px">
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h5 class="about-heading">Ingresa y conoce lo nuevo que traemos para ti!</h5>
+                                <p>
+                                    Con este canal de atención podrás gestionar tus operaciones dentro del partido de forma fácil y cómoda.
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h5 class="about-heading">Al registrarte!</h5>
+                                <p>
+                                    Ponemos a disposición de nuestros clientes las ventajas de la Oficina Virtual donde, dándose de alta gratuitamente, de manera rápida y sencilla, podrá estar permanentemente informado.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                        <div class="well no-padding">
+                            {% if error %}
+                                <span class="label label-danger">{{ error.message| replace({
+                                "Bad credentials": "Error! Identificación y/o Contraseña Invalida."
+                                }) }}
+                                </span>
+                            {% endif %}
+                            <form action="{{ path('usuario_login_check') }}" id="login-form" class="smart-form client-form" method="post">
+                                <header class="txt-color-white bg-color-red">
+                                    FORMULARIO DE INGRESO
+                                </header>
+
+                                <fieldset>
+                                    <section>
+                                        <label class="label">Identificación</label>
+                                        <label class="input"> <i class="icon-append fa fa-user"></i>
+                                            <input type="text" id="username" name="_username" value="{{ last_username }}" autofocus="">
+                                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor digita tu identificación</b></label>
+                                    </section>
+
+                                    <section>
+                                        <label class="label">Contraseña</label>
+                                        <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                            <input type="password" id="password" name="_password">
+                                            <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Ingresa tu contraseña</b> </label>
+                                        <div class="note">
+                                            <a href="{{path('usuario_recupera_contrasena')}}">Olvidó su contraseña?</a>
+                                        </div>
+                                    </section>
+                                </fieldset>
+                                <footer>
+                                    <button type="submit" class="btn btn-success">
+                                        Entrar
+                                    </button>
+                                </footer>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $('html').attr('id','extr-page');
+    $('body').attr('class','animated fadeInDown desktop-detected');
+</script>
+{% endblock %}
+

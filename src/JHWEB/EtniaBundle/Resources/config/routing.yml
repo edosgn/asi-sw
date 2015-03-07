@@ -1,0 +1,3 @@
+jhweb_etnia_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JHWEBEtniaBundle:Default:index }

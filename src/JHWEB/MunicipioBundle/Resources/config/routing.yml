@@ -1,0 +1,3 @@
+jhweb_municipio_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JHWEBMunicipioBundle:Default:index }

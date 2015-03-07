@@ -1,0 +1,4 @@
+#Opreraciones
+grupo:
+    resource: "@JHWEBGrupoBundle/Controller/"
+    type:     annotation

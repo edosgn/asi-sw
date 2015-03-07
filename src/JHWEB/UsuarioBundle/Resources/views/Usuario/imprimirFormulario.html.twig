@@ -1,0 +1,213 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div id="extr-page">
+	<div id="main" role="main">
+		<!-- MAIN CONTENT -->
+		<div id="content" class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 ">
+					<div class="col-xs-3">
+						<img src="{{asset(img ~ 'logo-asi.png')}}" class=" display-image1" alt="" style="width:100px">
+					</div>
+
+					<div class="col-xs-5">
+						<div class="btn btn-default btn-lg btn-block">
+							<h4><strong>Solicitud de Afiliación</strong></h4>
+						</div>
+					</div>
+
+					<div class="col-xs-4">
+						<div class="col-xs-offset-4 col-xs-9 ">
+							<div class="btn-group" role="group" >
+								<label for="dia" class="col-xs-4">Dia</label>
+								<label for="mes" class="col-xs-4">Mes</label>
+								<label for="anio" class="col-xs-4">Año</label>
+								<input id="dia" class="btn btn-default col-xs-4" placeholder="Dia" value="{{ "now"|date("d") }}">
+								<input id="mes" class="btn btn-default col-xs-4" value="{{ "now"|date("m") }}">
+								<input id="anio" class="btn btn-default col-xs-4" value="{{ "now"|date("y") }}">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="well">
+						<div class="row">
+							<section class="col-xs-3">
+								<label>Numero de Cedula:</label>
+								<label class="form-control input-sm">{{ usuario.identificacion}}</label>
+							</section>
+							<section class="col-xs-3">
+								<label >Fecha y lugar de expedición:</label>
+								<label class="form-control input-sm">{{usuario.fechaExpedicion|date('Y-m-d')}} - 
+									
+									{% if usuario.municipioExpedicion.nombre is defined  %} 
+										{{ usuario.municipioExpedicion.nombre }} 
+									{% else %}
+										<strong class="txt-color-red"> No definido </strong> 
+									{% endif %}
+
+								</label>
+							</section>
+							<section class="col-xs-3">
+								<label for="">fecha de nacimiento:</label>
+								<label class="form-control input-sm">{{usuario.fechaNacimiento|date('Y-m-d')}}</label>
+							</section>
+							<section class="col-xs-3">
+								<label for="">lugar de Nacimiento:</label>
+								<label class="form-control input-sm">{{usuario.municipioNacimiento.nombre}}</label>
+							</section>
+						</div>
+
+						<div class="row">
+							<section class="col-xs-6">
+								<label>Apellidos</label>
+								<label class="form-control input-sm">{{usuario.apellidos}}</label>
+							</section>
+							<section class="col-xs-6">
+								<label >Nombre</label>
+								<label class="form-control input-sm">{{usuario.nombres}}</label>
+							</section>
+						</div>
+
+						<div class="row">
+							<section class="col-xs-1">
+								<label>Genero</label>
+								<label class="form-control input-sm">{{usuario.genero}}</label>
+							</section>
+							<section class="col-xs-5">
+								<label >Nivel de Educación</label>
+								<label class="form-control input-sm">
+									{% if usuario.escolaridad.nombre is defined  %} 
+										{{ usuario.escolaridad.nombre }} 
+									{% else %}
+										<strong class="txt-color-red"> No definido </strong> 
+									{% endif %}
+								</label>
+							</section>
+							<section class="col-xs-3">
+								<label for="">Profesión</label>
+								<label class="form-control input-sm">{{usuario.titulo}}</label>
+							</section>
+							<section class="col-xs-3">
+								<label for="">Ocupación</label>
+								<label class="form-control input-sm">
+
+									{% if usuario.ocupacion.nombre is defined  %} 
+										{{ usuario.ocupacion.nombre }} 
+									{% else %}
+										<strong class="txt-color-red"> No definido </strong> 
+									{% endif %}
+								
+								</label>
+							</section>
+						</div>
+
+
+						<div class="row">
+							<section class="col-xs-4">
+								<label>Dirección</label>
+								<label class="form-control input-sm">{{usuario.direccion}}</label>
+							</section>
+							<section class="col-xs-4">
+								<label >Barrio/Vereda/Resguardo</label>
+								<label class="form-control input-sm">{{usuario.ubicacion}}</label>
+							</section>
+							<section class="col-xs-4">
+								<label for="">Municipio</label>
+								<label class="form-control input-sm">
+
+									{% if usuario.municipioResidencia.nombre is defined  %} 
+										{{ usuario.municipioResidencia.nombre }} 
+									{% else %}
+										<strong class="txt-color-red"> No definido </strong> 
+									{% endif %}
+
+								</label>
+							</section>
+						</div>
+
+
+						<div class="row">
+							<section class="col-xs-3">
+								<label>Departamento</label>
+								<label class="form-control input-sm">
+
+									{% if usuario.municipioResidencia.departamento.nombre is defined  %} 
+										{{ usuario.municipioResidencia.departamento.nombre }} 
+									{% else %}
+										<strong class="txt-color-red"> No definido </strong> 
+									{% endif %}
+
+								</label>
+							</section>
+							<section class="col-xs-3">
+								<label >Correo Electronico</label>
+								<label class="form-control input-sm">{{usuario.correo}}</label>
+							</section>
+							<section class="col-xs-3">
+								<label for="">Telefono</label>
+								<label class="form-control input-sm">{{usuario.fijo}}</label>
+							</section>
+							<section class="col-xs-3">
+								<label for="">Celular</label>
+								<label class="form-control input-sm">{{usuario.celular}}</label>
+							</section>
+						</div>
+
+						<div class="row">
+							<p></p>
+							<section class="col-xs-12">
+								<p class="text-justify">
+									Manifesto de forma voluntaria mi aceptación de los Estatutos, la Plataforma Ideológica Código de Ética del Partido Alianza Social Independiente (ASI); y me comprometo a contribuir con mi trabajo a la construcción de una opción de poder político, democrático participativo en nuestro país. Manifestó, además, que conozco y acepto el uso y el tratamiento de mis datos personales por parte de la Alianza Social Independiente (ASI), de acuerdo a la política de tratamiento de datos del partido.
+								</p>
+							</section>
+						</div>	
+
+						<div class="row">
+							<article class="col-xs-9">
+									<label  for="observaciones">Observaciones:</label>
+									<textarea name="observaciones" id="observaciones" class="form-control" rows="3" ></textarea>
+									<br>
+									<label  for="firma">Firma:</label>
+									<textarea name="firma" id="firma" class="form-control " rows="2"></textarea>
+								
+							</article>
+							
+							<article class="col-xs-3">
+								<label >Fecha Aprobación:</label>
+								<div class="well">
+									<div class="btn-group" role="group" >
+										<label for="dia" class="col-xs-4">Dia</label>
+										<label for="mes" class="col-xs-4">Mes</label>
+										<label for="anio" class="col-xs-4">Año</label>
+									
+										<input id="dia" class="btn btn-default col-xs-4" >
+										<input id="mes" class="btn btn-default col-xs-4" >
+										<input id="anio" class="btn btn-default col-xs-4" >
+									</div>
+									<p></p>
+									<label>Firma responsable</label>
+									<textarea  class="form-control" rows="1"></textarea>
+								</div>
+							</article>
+						</div>					
+
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+
+
+	<!--================================================== -->	
+{% endblock %}
+{% block javascripts %}
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">	
+	pageSetUp();
+
+	window.print();
+</script>
+{% endblock %}

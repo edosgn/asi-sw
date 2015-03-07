@@ -1,0 +1,24 @@
+security:
+    firewalls:
+        frontend:
+            pattern: ^/*
+            anonymous: ~
+            form_login:
+                login_path: usuario_login
+                check_path: usuario_login_check
+                default_target_path: portada
+            logout:
+                path: usuario_logout
+                target: /
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/registro*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/recupera/contrasena*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/*, roles: [ROLE_SUPERADMIN, ROLE_ADMIN, ROLE_USER] }
+
+    providers:
+        usuarios:
+            entity: { class: JHWEB\UsuarioBundle\Entity\Usuario, property: identificacion }
+
+    encoders:
+        JHWEB\UsuarioBundle\Entity\Usuario: { algorithm: sha512, iterations: 10 }

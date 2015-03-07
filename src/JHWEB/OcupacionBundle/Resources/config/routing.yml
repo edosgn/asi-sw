@@ -1,0 +1,3 @@
+jhweb_ocupacion_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: JHWEBOcupacionBundle:Default:index }

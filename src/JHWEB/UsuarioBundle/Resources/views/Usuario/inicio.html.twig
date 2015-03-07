@@ -1,0 +1,358 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-bullhorn"></i> Escritorio <span>> {{app.user.nombres ~ ' ' ~ app.user.apellidos}}</span></h1>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+        <!--
+        <ul id="sparks" class="">
+            <li class="sparks-info">
+                <h4> <small>Afiliados <span class="txt-color-blue">10</span></small></h4>
+            </li>
+            <li class="sparks-info">
+                <h4> <small>Usuarios <span class="txt-color-purple"><i class="fa-fw fa fa-users"></i>{{usuarios|length}}</span></small></h4>
+            </li>
+        </ul>
+        -->
+    </div>
+</div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+    
+    <!-- row -->
+    <div class="row">
+
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12 col-md-12 col-lg-6">
+
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-colorbutton="false" data-widget-fullscreenbutton="false">
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-check"></i> </span>
+                    <h2>Realiza los siguientes pasos </h2>
+                </header>
+
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <div class="row">
+                            <form id="wizard-1" novalidate="novalidate">
+                                <div id="bootstrap-wizard-1" class="col-sm-12">
+                                    <div class="form-bootstrapWizard">
+                                        <ul class="bootstrapWizard form-wizard">
+                                            <li class="active" data-target="#step1">
+                                                <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title">Imprimir Formulario</span> </a>
+                                            </li>
+                                            <li data-target="#step2">
+                                                <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Cargar Solicitud</span> </a>
+                                            </li>
+                                            <li data-target="#step3">
+                                                <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Estado</span> </a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab1">
+                                            <br>
+                                            <h3><strong>1 </strong> - Imprimir Formulario</h3>
+
+                                            <!-- -->
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div id="myCarousel" class="carousel fade profile-carousel">
+                                                        <div class="air air-bottom-right padding-10">
+                                                            <a href="#{{ path('usuario_edit', { 'id': app.user.id }) }}" class="btn btn-danger btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                                                            <a href="{{ path('usuario_imprimir_informacion', { 'id': app.user.id }) }}" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Imprimir</a>
+                                                        </div>
+                                                        <div class="air air-top-left padding-10">
+                                                            <h3 class="txt-color-white font-xl">{{app.user.nombres ~ ' ' ~ app.user.apellidos}}</h3>
+                                                        </div>
+                                                        <div class="carousel-inner">
+                                                            <!-- Slide 1 -->
+                                                            <div class="item active">
+                                                                <img src="{{asset(img ~ 'demo/s1.jpg')}}" alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-sm-4 profile-pic">
+                                                            {% if app.user.fotografia == "" %}
+                                                                <img src="{{asset(img ~ 'avatars/male.png')}}">
+                                                            {% else %}
+                                                                <img src="{{asset(img ~ 'avatars/' ~ app.user.fotografia)}}">
+                                                            {% endif %}
+                                                            <div class="padding-10">
+                                                                <!--
+                                                                <h4 class="font-md"><strong>{{app.user.intereses|length}}</strong>
+                                                                <br>
+                                                                <small><a href="{{path('interes')}}" class="load-ajax">Ver Intereses</a></small></h4>
+                                                                <hr>
+                                                                <h4 class="font-md"><strong>{{app.user.grupos|length}}</strong>
+                                                                <br>
+                                                                <small><a href="{{path('grupo')}}" class="load-ajax">Ver Grupos</a></small></h4>
+                                                                <br>
+                                                                -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <ul class="list-unstyled">
+                                                                <hr>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Identificación: </i><span class="txt-color-darken">{{app.user.identificacion}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Genero: </i><span class="txt-color-darken">{{app.user.genero}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Fecha Nacimiento: </i><span class="txt-color-darken">{{app.user.fechaNacimiento|date('Y-m-d')}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Fecha Expedición: </i><span class="txt-color-darken">{{app.user.fechaExpedicion|date('Y-m-d')}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Tel. Fijo: </i><span class="txt-color-darken">{{app.user.fijo}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Tel. Celular: </i><span class="txt-color-darken">{{app.user.celular}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Dirección: </i><span class="txt-color-darken">{{app.user.direccion}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Correo: </i><span class="txt-color-darken">{{app.user.correo}}</span>
+                                                                    </p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <ul class="list-unstyled">
+                                                            <hr>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Etnia: </i><span class="txt-color-darken">
+                                                                        {% if app.user.etnia.nombre is defined %}
+                                                                            {{app.user.etnia.nombre}}
+                                                                        {% else %}
+                                                                            <strong class="txt-color-red">Sin definir</strong>
+                                                                        {% endif %}
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Nievel de Escolaridad:: </i><span class="txt-color-darken">
+                                                                        {% if app.user.escolaridad.nombre is defined %}
+                                                                            {{app.user.escolaridad.nombre}}
+                                                                        {% else %}
+                                                                        <strong class="txt-color-red">No definido</strong>
+                                                                        {% endif %}
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Titulo: </i><span class="txt-color-darken">{{app.user.titulo}}</span>
+                                                                    </p>
+                                                                </li>
+                                                                <li>
+                                                                    <p class="text-muted">
+                                                                        <i>Ocupación: </i><span class="txt-color-darken">
+                                                                        {% if app.user.ocupacion.nombre is defined %}
+                                                                            {{app.user.ocupacion.nombre}}
+                                                                        {% else %}
+                                                                        <strong class="txt-color-red">No definido</strong>
+                                                                        {% endif %}
+                                                                        </span>
+                                                                    </p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- -->
+                                        </div>
+                                        <div class="tab-pane" id="tab2">
+                                            <br>
+                                            <h3><strong>2</strong> - Cargar solicitud</h3>
+                                            <div class="alert alert-info fade in">
+                                                <button class="close" data-dismiss="alert">
+                                                    ×
+                                                </button>
+                                                <i class="fa-fw fa fa-info"></i>
+                                                <strong>Importante!</strong> por favor escanea tu solicitud ya diligenciada y tu cedula en un solo documento pdf, antes de subirla por este medio.
+                                            </div>
+
+
+                                            <!-- widget content -->
+                                            <div class="well no-padding">
+
+                                                <form method="post" action="" class="smart-form form-ajax" id="smart-form-register" enctype="multipart/form-data">
+                                                    <fieldset>    
+                                                        <!-- seccion para fotografia no requerida -->
+                                                        <div class="row"> 
+                                                            <section class="col col-6">
+                                                                <label for="file" class="input input-file">
+                                                                    <div class="button"><input type="file" id="documento" name="documento">
+                                                                </label>
+                                                            </section>          
+                                                    </fieldset>
+                                                    <footer>
+                                                        <button type="submit" class="btn btn-success">Cargar</button>
+                                                    </footer>
+                                                </form>                     
+                                                
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane" id="tab3">
+                                            <br>
+                                            <h3><strong>3</strong> - Estado de afiliación</h3>
+                                            <br>
+                                            <h1 class="text-center text-success"><strong><i class="fa fa-check fa-lg"></i> Complete</strong></h1>
+                                            <h4 class="text-center">Click next to finish</h4>
+                                            <br>
+                                            <br>
+                                        </div>
+
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <ul class="pager wizard no-margin">
+                                                        <!--<li class="previous first disabled">
+                                                        <a href="javascript:void(0);" class="btn btn-lg btn-default"> First </a>
+                                                        </li>-->
+                                                        <li class="previous disabled">
+                                                            <a href="javascript:void(0);" class="btn btn-lg btn-default"> Previous </a>
+                                                        </li>
+                                                        <!--<li class="next last">
+                                                        <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
+                                                        </li>-->
+                                                        <li class="next">
+                                                            <a href="javascript:void(0);" class="btn btn-lg txt-color-darken"> Next </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12 col-md-12 col-lg-6" id="content-embedded"></article>
+    </div>
+
+    <!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+    pageSetUp();
+
+    // PAGE RELATED SCRIPTS
+    // pagefunction
+    var pagefunction = function() {
+        // load bootstrap wizard
+        loadScript("{{asset(js ~ 'plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js')}}", runBootstrapWizard);
+
+        //Bootstrap Wizard Validations
+
+        function runBootstrapWizard() {
+            $('#bootstrap-wizard-1').bootstrapWizard({
+
+                'tabClass' : 'form-wizard',
+                'onNext' : function(tab, navigation, index) {
+                    var $valid = $("#wizard-1").valid();
+                    if (!$valid) {
+                        $validator.focusInvalid();
+                        return false;
+                    } else {
+                        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).addClass('complete');
+                        $('#bootstrap-wizard-1').find('.form-wizard').children('li').eq(index - 1).find('.step').html('<i class="fa fa-check"></i>');
+                    }
+                }
+            });
+
+        };
+
+        // load fuelux wizard
+        
+        loadScript("{{asset(js ~ 'plugin/fuelux/wizard/wizard.min.js')}}", fueluxWizard);
+        
+        function fueluxWizard() {
+
+            var wizard = $('.wizard').wizard();
+
+            wizard.on('finished', function(e, data) {
+                //$("#fuelux-wizard").submit();
+                //console.log("submitted!");
+                $.smallBox({
+                    title : "Congratulations! Your form was submitted",
+                    content : "<i class='fa fa-clock-o'></i><i>1 seconds ago...</i>",
+                    color : "#5F895F",
+                    iconSmall : "fa fa-check bounce animated",
+                    timeout : 4000
+                });
+
+            });
+
+        };
+
+    };
+
+    // end pagefunction
+    
+    // Load bootstrap wizard dependency then run pagefunction
+    pagefunction();
+
+</script>
+<script type="text/javascript">
+$('.load-ajax').click(function(e) {
+    var url = $(this).attr("href");
+    $("#content-embedded").html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> Cargando...</h1>');
+    $("#content-embedded").load(url);
+    e.preventDefault(); //STOP default action
+});
+</script>

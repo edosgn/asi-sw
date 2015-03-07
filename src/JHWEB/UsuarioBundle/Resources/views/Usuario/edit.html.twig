@@ -1,0 +1,305 @@
+<!-- widget grid -->
+<section id="widget-grid" class="">
+	<!-- START ROW -->
+	<div class="row">
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-6">
+			<!-- Widget ID (each widget will need unique ID)-->	
+				{% for mensaje in app.session.flashbag.get('info') %}
+			        <div class="alert alert-success fade in">
+			            <button class="close" data-dismiss="alert">
+			                ×
+			            </button>
+			            <i class="fa-fw fa fa-check"></i>
+			            <strong>{{mensaje}}</strong>
+			        </div>
+			    {% endfor %}	
+			<!-- widget content -->
+			<div class="well no-padding">
+
+				{{ form_start(edit_form,{'attr': {'class':"smart-form form-ajax", 'id':'smart-form-register'}}) }}
+					<fieldset>
+						<div class="row">
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									{{ form_widget(edit_form.identificacion, { 'attr': {'class':'form-control input-sm', 'placeholder':'No. Identificación'} }) }}
+								</label>
+							</section>
+							<section class="col col-6">
+								<label class="input"><i class="icon-append fa fa-calendar"></i>
+									<input type="text" placeholder='Fecha de Expedición' class='datepicker' data-dateformat='yy-mm-dd' name="fechaExpedicion" value="{{entity.fechaExpedicion|date('Y-m-d')}}">
+								</label>
+							</section>
+						</div>
+
+						<hr>
+						<h4 class="text-center"><small>Lugar de Expedición</small></h4>
+						<div class="row">
+							<section class="col col-6">
+								<label class="select">
+									<select required onchange="cargaMunicipios(this.value,'municipioExpedicion','2');">
+										<option value="">Departamento</option>
+										{% for departamento in departamentos %}
+											{% if entity.municipioExpedicion.departamento.id == departamento.id %}
+												<option value="{{departamento.id}}" selected="selected">{{departamento.nombre}}</option>
+											{% else %}
+												<option value="{{departamento.id}}">{{departamento.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+									<i></i>
+								</label>
+							</section>
+							<section class="col col-6" id="municipioExpedicion">
+								<label class="select">
+									<select required name="municipio1">
+										<option value="">Municipio</option>
+										{% for municipio in municipios %}
+											{% if entity.municipioExpedicion.id == municipio.id %}
+												<option value="{{municipio.id}}" selected="selected">{{municipio.nombre}}</option>
+											{% else %}
+												<option value="{{municipio.id}}">{{municipio.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+									<i></i>
+								</label>
+							</section>
+						</div>
+
+						<hr>
+						<h4 class="text-center"><small>Lugar de Nacimiento</small></h4>
+
+						<div class="row">
+							<section class="col col-6">
+								<label class="select">
+									<select required onchange="cargaMunicipios(this.value,'municipioNacimiento','1');">
+										<option value="">Departamento</option>
+										{% for departamento in departamentos %}
+											{% if entity.municipioNacimiento.departamento.id == departamento.id %}
+												<option value="{{departamento.id}}" selected="selected">{{departamento.nombre}}</option>
+											{% else %}
+												<option value="{{departamento.id}}">{{departamento.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+									<i></i>
+								</label>
+							</section>
+							<section class="col col-6" id="municipioNacimiento">
+								<label class="select">
+									<select required name="municipio2">
+										<option value="">Municipio</option>
+										{% for municipio in municipios %}
+											{% if entity.municipioNacimiento.id == municipio.id %}
+												<option value="{{municipio.id}}" selected="selected">{{municipio.nombre}}</option>
+											{% else %}
+												<option value="{{municipio.id}}">{{municipio.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+									<i></i>
+								</label>
+							</section>
+						</div>
+
+						<div class="row">
+							<section class="col col-6">
+								<label class="input"><i class="icon-append fa fa-calendar"></i>
+									<input type="text" placeholder='Fecha de Nacimiento' class='datepicker' data-dateformat='yy-mm-dd' name="fechaNacimiento" value="{{entity.fechaNacimiento|date('Y-m-d')}}">
+								</label>
+							</section>
+							<section class="col col-6">
+								<label class="select">
+									{{ form_widget(edit_form.genero) }}
+									<i></i>
+								</label>
+							</section> 
+						</div>
+
+						<div class="row">
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									{{ form_widget(edit_form.nombres, { 'attr': {'class':'form-control input-sm', 'placeholder':'Nombres'} }) }}
+								</label>
+							</section>
+
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									{{ form_widget(edit_form.apellidos, { 'attr': {'class':'form-control input-sm', 'placeholder':'Apellidos'} }) }}
+								</label>
+							</section>	
+						</div>
+
+						<hr>
+						<div class="row">
+							<section class="col col-6">
+								<label class="select">
+									{{ form_widget(edit_form.escolaridad) }}
+									<i></i>
+								</label>
+							</section> 
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-graduation-cap"></i>
+									{{ form_widget(edit_form.titulo, { 'attr': {'placeholder':'Titulo Obtenido'} }) }}
+									<b class="tooltip tooltip-bottom-right">Titulo Obtenido</b> 
+								</label>
+							</section> 	
+						</div>	
+
+						<div class="row">
+							<section class="col col-6">
+								<label class="select">
+									{{ form_widget(edit_form.ocupacion) }}
+									<i></i>
+								</label>
+							</section>
+							<section class="col col-6">
+								<label class="select" >
+									{{ form_widget(edit_form.etnia, { 'attr': {'required':'required'} }) }}
+									<i></i>
+								</label>
+							</section>									
+						</div>	
+
+						<hr>
+						<div class="row">
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-home"></i>
+									{{ form_widget(edit_form.direccion, { 'attr': {'class':'form-control input-sm', 'placeholder':'Dirección'} }) }}
+								</label>
+							</section>
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-map-marker"></i>
+									{{ form_widget(edit_form.ubicacion, { 'attr': {'class':'form-control input-sm', 'placeholder':'Barrio/Vereda/Resguardo'} }) }}
+								</label>
+							</section>
+						</div>	
+
+						<h4 class="text-center"><small>Lugar de Residencia</small></h4>
+						<div class="row">
+							<section class="col col-6">
+								<label class="select">
+									<select required onchange="cargaMunicipios(this.value,'municipioResidencia','3');">
+										<option value="">Departamento</option>
+										{% for departamento in departamentos %}
+											{% if entity.municipioResidencia.departamento.id == departamento.id %}
+												<option value="{{departamento.id}}" selected="selected">{{departamento.nombre}}</option>
+											{% else %}
+												<option value="{{departamento.id}}">{{departamento.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+									<i></i>
+								</label>
+							</section>
+							<section class="col col-6" id="municipioResidencia">
+								<label class="select">
+									<select required name="municipio3">
+										<option value="">Municipio</option>
+										{% for municipio in municipios %}
+											{% if entity.municipioResidencia.id == municipio.id %}
+												<option value="{{municipio.id}}" selected="selected">{{municipio.nombre}}</option>
+											{% else %}
+												<option value="{{municipio.id}}">{{municipio.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									</select>
+									<i></i>
+								</label>
+							</section>
+						</div>	
+
+						<div class="row">
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-phone"></i>
+									{{ form_widget(edit_form.fijo, { 'attr': {'class':'form-control input-sm', 'placeholder':'Teléfono'} }) }}
+								</label>
+							</section>
+
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-mobile"></i>
+									{{ form_widget(edit_form.celular, { 'attr': {'class':'form-control input-sm', 'placeholder':'Celular'} }) }}
+								</label>
+							</section>
+						</div>
+
+						<div class="row">
+							<section class="col col-6">
+								<label class="input"> <i class="icon-append fa fa-envelope"></i>
+									{{ form_widget(edit_form.correo, { 'attr': {'class':'form-control input-sm', 'placeholder':'Correo'} }) }}
+								</label>
+							</section>
+						</div>
+						
+						<!-- seccion para fotografia no requerida -->
+						<div class="row">
+							<section class="col col-6">
+								<label for="file" class="input input-file">
+									<div class="button">{{ form_widget(edit_form.fotografia, { 'attr': {'name':'file','onchange':'this.parentNode.nextSibling.value = this.value'} }) }}Buscar</div><input type="text" placeholder="Busca una foto" readonly="">
+								</label>
+							</section>	
+							<section class="col col-6">
+								<label class="checkbox state-disabled">
+									{{ form_widget(edit_form.acepta, { 'attr': {'onclick':'this.checked=!this.checked;'}} ) }}
+									<i></i>Usted esta de acuerdo con los Términos y Condiciones
+								</label>
+							</section>					
+					</fieldset>
+					<footer>
+						{{ form_widget(edit_form.submit, { 'label': 'Editar', 'attr': {'class':'btn btn-success form-ajax'} }) }}
+					</footer>
+					{{ form_end(edit_form) }}
+				</form>						
+				
+			</div>
+			<!-- end widget content -->
+		</article>
+	</div>
+</section>
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('.form-ajax').submit(function(e) {
+        var formData = new FormData($(this)[0]);
+	    $.ajax({
+	        url: $(this).attr("action"),
+	        type: 'POST',
+	        data: formData,
+	        async: false,
+	        success: function (data) {
+	            $("#content").html(data);
+	        },
+	        cache: false,
+	        contentType: false,
+	        processData: false
+	    });
+
+	    return false;
+
+    });
+});
+</script>
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+	pageSetUp();
+	function cargaMunicipios(valor,content,tipo){
+
+	    if (valor != 0 || valor != "") {
+	        $("#"+content).html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> Cargando...</h1>');
+	        var url = '/asi-sw/web/registro/lista/municipios/'+valor+"/"+tipo;
+	        $("#"+content).load(url);
+	    }else{
+	        $.bigBox({
+	                title : "Alerta",
+	                content : "Usted debe seleccionar un departamento valido!",
+	                color : "#C46A69",
+	                //timeout: 6000,
+	                icon : "fa fa-warning shake animated",
+	                //number : "1",
+	                timeout : 6000
+	            });
+	    
+	            e.preventDefault();
+	    }
+	}
+</script>

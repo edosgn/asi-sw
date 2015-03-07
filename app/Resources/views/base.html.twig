@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}ASI{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <!-- Basic Styles -->
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(css ~ 'bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(css ~ 'font-awesome.min.css')}}">
+        <!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(css ~ 'smartadmin-production.min.css')}}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(css ~ 'smartadmin-skins.min.css')}}">
+
+        <!-- #IMPRIMIR -->
+        <link rel="stylesheet" type="text/css" media="print" href="{{asset(css ~ 'bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" media="print" href="{{asset(css ~ 'smartadmin-production.min.css')}}">
+        <link rel="stylesheet" type="text/css" media="print" href="{{asset(css ~ 'smartadmin-skins.min.css')}}">
+        <style type="text/css" media="print">
+          @page { size: landscape; }
+          .form-control{
+            font-size: 11px;
+          }
+          p.text-justify{
+            font-size: 9px;
+          }
+          .well{
+            padding: 10px;
+          }
+        </style>
+
+        <!-- #FAVICONS -->
+        <link rel="shortcut icon" href="{{asset(img ~ 'favicon/logo.ico')}}" type="image/x-icon">
+        <link rel="icon" href="{{asset(img ~ 'favicon/logo.ico')}}" type="image/x-icon">
+        <!-- #GOOGLE FONT -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+        <!-- #GOOGLE FONT -->
+        <link rel="stylesheet" type="text/css" media="screen" href="{{asset(css ~ 'my_style.css')}}">
+    </head>
+    <body class="menu-on-top">
+
+        {% block body %}{% endblock %}
+
+        <!-- #PLUGINS -->
+        <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script>
+            if (!window.jQuery) {
+                document.write('<script src="{{asset(js ~ 'libs/jquery-2.0.2.min.js')}}"><\/script>');
+            }
+        </script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script>
+            if (!window.jQuery.ui) {
+                document.write('<script src="{{asset(js ~ 'libs/jquery-ui-1.10.3.min.js')}}"><\/script>');
+            }
+        </script>
+
+        <!-- IMPORTANT: APP CONFIG -->
+        <script src="{{asset(js ~ 'app.config.js')}}"></script>
+
+        <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
+        <script src="{{asset(js ~ 'plugin/jquery-touch/jquery.ui.touch-punch.min.js')}}"></script> 
+
+        <!-- BOOTSTRAP JS -->
+        <script src="{{asset(js ~ 'bootstrap/bootstrap.min.js')}}"></script>
+
+        <!-- CUSTOM NOTIFICATION -->
+        <script src="{{asset(js ~ 'notification/SmartNotification.min.js')}}"></script>
+
+        <!-- JARVIS WIDGETS -->
+        <script src="{{asset(js ~ 'smartwidgets/jarvis.widget.min.js')}}"></script>
+
+        <!-- EASY PIE CHARTS -->
+        <script src="{{asset(js ~ 'plugin/easy-pie-chart/jquery.easy-pie-chart.min.js')}}"></script>
+
+        <!-- SPARKLINES -->
+        <script src="{{asset(js ~ 'plugin/sparkline/jquery.sparkline.min.js')}}"></script>
+
+        <!-- JQUERY VALIDATE -->
+        <script src="{{asset(js ~ 'plugin/jquery-validate/jquery.validate.min.js')}}"></script>
+
+        <!-- JQUERY MASKED INPUT -->
+        <script src="{{asset(js ~ 'plugin/masked-input/jquery.maskedinput.min.js')}}"></script>
+
+        <!-- JQUERY SELECT2 INPUT -->
+        <script src="{{asset(js ~ 'plugin/select2/select2.min.js')}}"></script>
+
+        <!-- JQUERY UI + Bootstrap Slider -->
+        <script src="{{asset(js ~ 'plugin/bootstrap-slider/bootstrap-slider.min.js')}}"></script>
+
+        <!-- browser msie issue fix -->
+        <script src="{{asset(js ~ 'plugin/msie-fix/jquery.mb.browser.min.js')}}"></script>
+
+        <!-- FastClick: For mobile devices: you can disable this in app.js -->
+        <script src="{{asset(js ~ 'plugin/fastclick/fastclick.min.js')}}"></script>
+
+        <!-- MAIN APP JS FILE -->
+        <script src="{{asset(js ~ 'app.min.js')}}"></script>
+
+
+        <!-- Your GOOGLE ANALYTICS CODE Below -->
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+          _gaq.push(['_trackPageview']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+       
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

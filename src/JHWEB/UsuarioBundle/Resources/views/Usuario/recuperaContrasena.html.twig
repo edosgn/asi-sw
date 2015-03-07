@@ -1,0 +1,93 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div id="extr-page">
+
+        <div id="main" role="main">
+            <!-- MAIN CONTENT -->
+            <div id="content" class="container">
+                {% for mensaje in app.session.flashbag.get('info') %}
+                    <div class="alert alert-danger fade in">
+                        <button class="close" data-dismiss="alert">
+                            ×
+                        </button>
+                        <i class="fa-fw fa fa-check"></i>
+                        <strong>{{mensaje}}</strong>
+                    </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+                        <h1 class="txt-color-red login-header-big">Si olvidaste tu contraseña.</h1>
+                        <div class="hero">
+                            <div class="pull-left login-desc-box-l">
+                                <h4 class="paragraph-header text-justify">Digita el numero de identificación que tienes registrado en el sistema, si ya te encuentras registrado el sistema te enviara a tu correo una nueva contraseña, la cual podras cambiar dentro de la plataforma.</h4>
+                                <div class="login-app-icons">
+                                    <a href="{{path('usuario_login')}}" class="btn btn-danger btn-sm">Ya recorde mi contraseña!!</a>
+                                </div>
+                            </div>
+                            <img src="{{asset(img ~ 'logo-asi.png')}}" class="pull-right display-image" alt="" style="width:210px">
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h5 class="about-heading">Ingresa y conoce lo nuevo que traemos para ti!</h5>
+                                <p>
+                                    Con este canal de atención podrás gestionar tus servicios de gas de forma rápida, fácil y cómoda.
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <h5 class="about-heading">Al registrarte!</h5>
+                                <p>
+                                    Ponemos a disposición de nuestros clientes las ventajas de la Oficina Virtual donde, dándose de alta gratuitamente, de manera rápida y sencilla, podrá estar permanentemente informado.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+                        <div class="well no-padding">
+                            {% for mensaje in app.session.flashbag.get('info') %}
+                                <div class="alert alert-danger fade in">
+                                    <button class="close" data-dismiss="alert">
+                                        ×
+                                    </button>
+                                    <i class="fa-fw fa fa-check"></i>
+                                    <strong>{{mensaje}}</strong>
+                                </div>
+                            {% endfor %}
+                            <form action="{{ path('usuario_recupera_contrasena') }}" id="login-form" class="smart-form client-form" method="post">
+                                <header class="txt-color-white bg-color-red">
+                                    RECUPERA CONTRASEÑA
+                                </header>
+
+                                <fieldset>
+                                    <section>
+                                        <label class="label">Identificación</label>
+                                        <label class="input"> <i class="icon-append fa fa-user"></i>
+                                            <input type="text" name="identificacion" autofocus="">
+                                            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Por favor digita tu identificación</b></label>
+                                    </section>
+                                </fieldset>
+                                <footer>
+                                    <button type="submit" class="btn btn-success">
+                                        Recuperar
+                                    </button>
+                                </footer>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $('html').attr('id','extr-page');
+    $('body').attr('class','animated fadeInDown desktop-detected');
+</script>
+{% endblock %}
+

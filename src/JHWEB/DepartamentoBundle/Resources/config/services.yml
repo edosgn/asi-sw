@@ -1,0 +1,4 @@
+services:
+#    jhweb_departamento.example:
+#        class: JHWEB\DepartamentoBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

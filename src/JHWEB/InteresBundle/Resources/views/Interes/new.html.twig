@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-user"></i> <span> Nuevo Interes</span></h1>
+    </div>
+</div>
+<!-- widget grid -->
+<section id="widget-grid" class="">
+	<!-- START ROW -->
+	<div class="row">
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-12">
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>FORMULARIO</h2>				
+					
+				</header>
+
+				<!-- widget div-->
+				<div>
+					
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						
+					</div>
+					<!-- end widget edit box -->
+					
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+						{{ form_start(form,{'attr': {'class':"smart-form form-ajax", 'id':'smart-form-register'}}) }} 
+							<header>
+								Datos requeridos
+							</header>
+
+							<fieldset>
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-question-circle"></i>
+											{{ form_widget(form.nombre, { 'attr': {'placeholder':'Nombre de interes','autofocus':'autofocus'} }) }}
+											<b class="tooltip tooltip-bottom-right">Nombre del Interes</b> 
+										</label>
+									</section>
+																	
+									<input type="hidden" value="{{app.user.id}}">
+								</div>	
+							</fieldset>
+							<footer>
+								{{ form_widget(form.submit, { 'label': 'Registrarse', 'attr': {'class':'btn btn-primary'} }) }}
+							</footer>
+							{{ form_end(form) }}
+						</form>						
+						
+					</div>
+					<!-- end widget content -->
+					
+				</div>
+				<!-- end widget div -->
+				
+			</div>
+			<!-- end widget -->
+		</article>
+	</div>
+</section>
+
+<script type="text/javascript">
+$('.form-ajax').submit(function(e) {
+	$("#content-embedded").html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> Cargando...</h1>');
+    var postData = $(this).serializeArray();
+    var formURL = $(this).attr("action");
+
+    $("#content-embedded").load(formURL,postData);
+
+    e.preventDefault(); //STOP default action
+});
+</script>

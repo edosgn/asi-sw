@@ -1,0 +1,341 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div id="extr-page">
+	<div id="main" role="main">
+		<!-- MAIN CONTENT -->
+		<div id="content" class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 hidden-xs hidden-sm">
+					<h1 class="txt-color-red login-header-big">Forme parte de nuestro partido.</h1>
+                    <div class="hero">
+                        <div class="pull-left login-desc-box-l">
+                            <h4 class="paragraph-header text-justify">Ahora puedes realizar tu solicitud de afiliación a traves de nuestra plataforma, donde podras actualizar tus datos en cualquier momento, recibir información importante, conocer tu estado dentro del partido y mucho más!!</h4>
+                            <div class="login-app-icons">
+                                <a href="{{path('usuario_login')}}" class="btn btn-danger btn-lg">Ya estas registrado!!</a>
+                            </div>
+                        </div>
+                        <img src="{{asset(img ~ 'logo-asi.png')}}" class="pull-right display-image" alt="" style="width:210px">
+                    </div>
+
+					<div class="row">
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<h5 class="about-heading">Conoce lo nuevo que traemos para ti!</h5>
+							<p>
+								Con este canal de atención podrás gestionar tus operaciones dentro del partido de forma fácil y cómoda.
+							</p>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+							<h5 class="about-heading">Al registrarte!</h5>
+							<p>
+								Ponemos a disposición de nuestros clientes las ventajas de la Oficina Virtual donde, dándose de alta gratuitamente, de manera rápida y sencilla, podrá estar permanentemente informado.
+							</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+					{{ form_errors(formulario.identificacion) }}
+					<div class="well no-padding">
+						<form action="{{path('usuario_registro')}}" id="smart-form-register" class="smart-form client-form" method="post" {{ form_enctype(formulario) }}>
+							<header class="txt-color-white bg-color-red">
+								Formulario de registro
+							</header>
+
+							<fieldset>
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											{{ form_widget(formulario.identificacion, { 'attr': {'class':'form-control input-sm', 'placeholder':'No. Identificación'} }) }}
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="input"><i class="icon-append fa fa-calendar"></i>
+											<input type="text" placeholder='Fecha de Expedición' class='datepicker' data-dateformat='yy-mm-dd' name="fechaExpedicion">
+										</label>
+									</section>
+								</div>
+
+								<hr>
+								<h4 class="text-center"><small>Lugar de Expedición</small></h4>
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											<select required onchange="cargaMunicipios(this.value,'municipioExpedicion','2');">
+												<option value="">Departamento</option>
+												{% for departamento in departamentos %}
+													<option value="{{departamento.id}}">{{departamento.nombre}}</option>
+												{% endfor %}
+											</select>
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-6" id="municipioExpedicion"></section>
+								</div>
+
+								<hr>
+								<h4 class="text-center"><small>Lugar de Nacimiento</small></h4>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											<select required onchange="cargaMunicipios(this.value,'municipioNacimiento','1');">
+												<option value="">Departamento</option>
+												{% for departamento in departamentos %}
+													<option value="{{departamento.id}}">{{departamento.nombre}}</option>
+												{% endfor %}
+											</select>
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-6" id="municipioNacimiento"></section>
+								</div>
+
+								
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"><i class="icon-append fa fa-calendar"></i>
+											<input type="text" placeholder='Fecha de Nacimiento' class='datepicker' data-dateformat='yy-mm-dd' name="fechaNacimiento">
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="select">
+											{{ form_widget(formulario.genero) }}
+											<i></i>
+										</label>
+									</section> 
+								</div>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											{{ form_widget(formulario.nombres, { 'attr': {'class':'form-control input-sm', 'placeholder':'Nombres'} }) }}
+										</label>
+									</section>
+
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											{{ form_widget(formulario.apellidos, { 'attr': {'class':'form-control input-sm', 'placeholder':'Apellidos'} }) }}
+										</label>
+									</section>	
+								</div>
+
+								<hr>
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											{{ form_widget(formulario.escolaridad) }}
+											<i></i>
+										</label>
+									</section> 
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-graduation-cap"></i>
+											{{ form_widget(formulario.titulo, { 'attr': {'placeholder':'Titulo Obtenido'} }) }}
+											<b class="tooltip tooltip-bottom-right">Titulo Obtenido</b> 
+										</label>
+									</section> 	
+								</div>	
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											{{ form_widget(formulario.ocupacion) }}
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="select" >
+											{{ form_widget(formulario.etnia) }}
+											<i></i>
+										</label>
+									</section>									
+								</div>	
+
+								<hr>
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-home"></i>
+											{{ form_widget(formulario.direccion, { 'attr': {'class':'form-control input-sm', 'placeholder':'Dirección'} }) }}
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-map-marker"></i>
+											{{ form_widget(formulario.ubicacion, { 'attr': {'class':'form-control input-sm', 'placeholder':'Barrio/Vereda/Resguardo'} }) }}
+										</label>
+									</section>
+								</div>	
+
+								<h4 class="text-center"><small>Lugar de Residencia</small></h4>
+								<div class="row">
+									<section class="col col-6">
+										<label class="select">
+											<select required onchange="cargaMunicipios(this.value,'municipioResidencia','3');">
+												<option value="">Departamento</option>
+												{% for departamento in departamentos %}
+													<option value="{{departamento.id}}">{{departamento.nombre}}</option>
+												{% endfor %}
+											</select>
+											<i></i>
+										</label>
+									</section>
+									<section class="col col-6" id="municipioResidencia"></section>
+								</div>	
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-phone"></i>
+											{{ form_widget(formulario.fijo, { 'attr': {'class':'form-control input-sm', 'placeholder':'Teléfono'} }) }}
+										</label>
+									</section>
+
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-mobile"></i>
+											{{ form_widget(formulario.celular, { 'attr': {'class':'form-control input-sm', 'placeholder':'Celular'} }) }}
+										</label>
+									</section>
+								</div>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="input"> <i class="icon-append fa fa-envelope"></i>
+											{{ form_widget(formulario.correo, { 'attr': {'class':'form-control input-sm', 'placeholder':'Correo'} }) }}
+										</label>
+									</section>
+								</div>
+								
+								<!-- seccion para fotografia no requerida -->
+								<section style="display:none">
+									<label for="file" class="input input-file">
+										<div class="button">{{ form_widget(formulario.fotografia, { 'attr': {'name':'file','onchange':'this.parentNode.nextSibling.value = this.value'} }) }}Buscar</div><input type="text" placeholder="Busca una foto" readonly="">
+									</label>
+								</section>						
+							</fieldset>
+
+							<fieldset>
+								<section>
+										<label class="checkbox">
+											{{ form_widget(formulario.acepta) }}
+											<i></i>Estoy de acuerdo con los <a href="#" data-toggle="modal" data-target="#myModal"> Términos y Condiciones </a>
+										</label>
+									</section>
+							</fieldset>
+							<footer>
+								<input type="submit" class="btn btn-success" value="Registrar">
+							</footer>
+
+							<div class="message">
+								<i class="fa fa-check"></i>
+								<p>
+									Thank you for your registration!
+								</p>
+							</div>
+							{{ form_rest(formulario) }}
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header bg-color-orange">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel"><strong>Términos y Condiciones</strong></h4>
+					</div>
+					<div class="modal-body custom-scroll terms-body">
+						
+ 					<div class="terminos text-center">
+						<br><br>
+						<h2>
+							<strong>DE LA ORGANIZACIÓN Y FUNCIONAMIENTO DE LOS PARTIDOS Y MOVIMIENTOS POLÍTICOS.</strong>
+							<p><strong>CAPÍTULO I.</strong></p>
+							<p><strong>DE LOS PRINCIPIOS Y REGLAS DE ORGANIZACIÓN Y FUNCIONAMIENTO.</strong></p>
+						</h2>
+						<br>
+						<div class="text-justify">
+							<p> De los principios y reglas de organización y funcionamiento
+							Artículo 1º. Principios de organización y funcionamiento. Los partidos y movimientos políticos se ajustarán en su organización y funcionamiento a los principios de transparencia, objetividad, moralidad, equidad de género y el deber de presentar y divulgar sus programas políticos de conformidad con lo dispuesto en la Constitución, en las leyes y en sus estatutos. En desarrollo de estos principios, los partidos y movimientos políticos deberán garantizarlos en sus estatutos. Para tales efectos, se tendrán en cuenta las siguientes definiciones de contenidos mínimos:
+							</p>
+
+							<p> <strong>1.</strong> Participación. Entiéndase por el derecho de todo afiliado a intervenir, directamente o a través de sus representantes, en la adopción de las decisiones fundamentales del partido o movimiento, en el máximo órgano de dirección y en las demás instancias de gobierno, administración y control, así como los derechos de elegir y ser elegido en todo proceso de designación o escogencia de sus directivos y de sus candidatos a cargos y corporaciones de elección popular, de acuerdo a sus estatutos.</p>
+
+							<p><strong>2.</strong> Igualdad. Se entiende por igualdad la exclusión de toda discriminación o privilegio por razones ideológicas, económicas, sociales, de sexo, o de raza, en los procesos de participación en la vida del partido o movimiento.</p>
+
+							<p><strong>3.</strong> Pluralismo. El pluralismo implica para las organizaciones políticas el deber de garantizar la expresión de las tendencias existentes en su interior, en particular de las minorías, sin perjuicio de la aplicación del principio de mayoría, razón por la que los estatutos incluirán normas sobre quórum y mayorías especiales para la toma de decisiones fundamentales en materia de organización, funcionamiento y de participación de sus afiliados en la vida del partido o movimiento.</p>
+
+							<p><strong>4.</strong> Equidad e igualdad de género. En virtud del principio de equidad e igualdad de género, los hombres, las mujeres y las demás opciones sexuales gozarán de igualdad real de derechos y oportunidades para participar en las actividades políticas, dirigir las organizaciones partidistas, acceder a los debates electorales y obtener representación</p>
+							<p><strong>5.</strong> Transparencia. Es el deber de los partidos y movimientos políticos de mantener permanentemente informados a sus afiliados sobre sus actividades políticas, administrativas y financieras. Para su cumplimiento, deberán realizar cada año rendición de cuentas.</p>
+							<p><strong>6.</strong> Moralidad. Los miembros de los partidos y movimientos políticos desarrollarán su actividad de conformidad con las normas de comportamiento adoptadas en los correspondientes códigos de ética.</p>
+							<br>
+							Miembros del partido
+							<br><br>
+							Artículo 8.– Miembros.
+							<p>Pueden ser miembros de la <strong>ALIANZA SOCIAL INDEPENDIENTE</strong> los hombres y mujeres mayores de 18 años, de nacionalidad colombiana, (además de la participación de los jóvenes de acuerdo a la normatividad vigente) con domicilio dentro o fuera del país, que cumplan con el procedimiento de inscripción dispuestos por el Partido y la ley. Cuando se trate de organizaciones sociales la solicitud de afiliación deberá ser aprobada por la mayoría de los socios de la organización solicitante mediante acta y el ingreso deberá ser aprobado por la Dirección Nacional, Regional o Municipal respectiva.</p>
+
+							<p>Los militantes, para ostentar cargos directivos deberán ser personas idóneas y ejemplares para la sociedad; no podrán ser directivos quienes hayan sido condenados por delitos contra la administración pública, la comisión de delitos de lesa humanidad, narcotráfico o la comisión de delitos contra la infancia, la mujer y la familia.</p>
+
+							<p>Existirá un mecanismo para depurar los censos municipales de militantes desde los Comités Ejecutivos Municipales, con el concurso del Comité Ejecutivo Departamental, un mes antes de la convocatoria a convención municipal.</p>
+						</div>
+
+						<h2>
+							<strong>Reglamento de uso sistema de registro de afiliados ASI</strong>
+						</h2>
+
+						<div class="text-justify">
+
+							<p><strong>1.</strong> Afiliación al partido. Se producirá cuando: (i) El AFILIADO efectúe la solicitud de afiliación por Internet y efectúe la validación de sus datos en línea según el formato establecido por el partido. En ambos casos, el afiliado debe haber manifestado expresamente su aceptación del presente reglamento. Si el AFILIADO no cumple con las condiciones mínimas exigidas para atender con el procedimiento de activación de clave de acceso y registro en el sistema, ASI se reserva el derecho a rechazar la solicitud realizada por el AFILIADO.</p>
+							<p><strong>2.</strong> Afiliación al partido. Se producirá cuando: (i) El AFILIADO efectúe la solicitud de afiliación por Internet y efectúe la validación de sus datos en línea según el formato establecido por el partido. En ambos casos, el afiliado debe haber manifestado expresamente su aceptación del presente reglamento. Si el AFILIADO no cumple con las condiciones mínimas exigidas para atender con el procedimiento de activación de clave de acceso y registro en el sistema, ASI se reserva el derecho a rechazar la solicitud realizada por el AFILIADO.</p>
+							<p><strong>3.</strong> Afiliación al partido. Se producirá cuando: (i) El AFILIADO efectúe la solicitud de afiliación por Internet y efectúe la validación de sus datos en línea según el formato establecido por el partido. En ambos casos, el afiliado debe haber manifestado expresamente su aceptación del presente reglamento. Si el AFILIADO no cumple con las condiciones mínimas exigidas para atender con el procedimiento de activación de clave de acceso y registro en el sistema, ASI se reserva el derecho a rechazar la solicitud realizada por el AFILIADO.</p>
+							<p><strong>4.</strong> Utilización de la página. El AFILIADO reconoce y acepta el establecimiento de mecanismos de seguridad que garanticen la protección adecuada de sus datos. Así mismo se compromete a utilizar la información, los servicios y los diseños de la página de acuerdo con las disposiciones vigentes, en este reglamento, las buenas costumbres y el orden público.</p>
+							<p><strong>5.</strong> Utilización de la página. El AFILIADO reconoce y acepta el establecimiento de mecanismos de seguridad que garanticen la protección adecuada de sus datos. Así mismo se compromete a utilizar la información, los servicios y los diseños de la página de acuerdo con las disposiciones vigentes, en este reglamento, las buenas costumbres y el orden público.</p>
+							<p><strong>6.</strong> Utilización de la página. El AFILIADO reconoce y acepta el establecimiento de mecanismos de seguridad que garanticen la protección adecuada de sus datos. Así mismo se compromete a utilizar la información, los servicios y los diseños de la página de acuerdo con las disposiciones vigentes, en este reglamento, las buenas costumbres y el orden público.</p>
+							<p><strong>7.</strong> Utilización de la página. El AFILIADO reconoce y acepta el establecimiento de mecanismos de seguridad que garanticen la protección adecuada de sus datos. Así mismo se compromete a utilizar la información, los servicios y los diseños de la página de acuerdo con las disposiciones vigentes, en este reglamento, las buenas costumbres y el orden público.</p>
+						</div>
+
+					</div>
+
+					<div class="modal-footer bg-color-greenLight">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+							Cancelar
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+	<!--================================================== -->	
+{% endblock %}
+{% block javascripts %}
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+	pageSetUp();
+
+	function cargaMunicipios(valor,content,tipo){
+
+    if (valor != 0 || valor != "") {
+        $("#"+content).html('<h1 class="ajax-loading-animation"><i class="fa fa-cog fa-spin"></i> Cargando...</h1>');
+        var url = '/asi-sw/web/registro/lista/municipios/'+valor+"/"+tipo;
+        $("#"+content).load(url);
+    }else{
+        $.bigBox({
+                title : "Alerta",
+                content : "Usted debe seleccionar un departamento valido!",
+                color : "#C46A69",
+                //timeout: 6000,
+                icon : "fa fa-warning shake animated",
+                //number : "1",
+                timeout : 6000
+            });
+    
+            e.preventDefault();
+    }
+}
+</script>
+{% endblock %}

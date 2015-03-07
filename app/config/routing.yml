@@ -1,0 +1,39 @@
+jhweb_documento:
+    resource: "@JHWEBDocumentoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_grupo:
+    resource: "@JHWEBGrupoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_ocupacion:
+    resource: "@JHWEBOcupacionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_interes:
+    resource: "@JHWEBInteresBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_escolaridad:
+    resource: "@JHWEBEscolaridadBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_municipio:
+    resource: "@JHWEBMunicipioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_departamento:
+    resource: "@JHWEBDepartamentoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_etnia:
+    resource: "@JHWEBEtniaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jhweb_usuario:
+    resource: "@JHWEBUsuarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+portada:
+    pattern: /
+    defaults: { _controller: FrameworkBundle:Redirect:redirect, route: escritorio }

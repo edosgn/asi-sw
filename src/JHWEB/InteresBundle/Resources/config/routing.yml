@@ -1,0 +1,4 @@
+#Opreraciones
+interes:
+    resource: "@JHWEBInteresBundle/Controller/"
+    type:     annotation
